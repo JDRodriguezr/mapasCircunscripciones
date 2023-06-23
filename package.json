@@ -1,0 +1,14 @@
+{
+  "name": "ecuador",
+  "version": "1.0.0",
+  "description": "mapa para andres",
+  "main": "countrymap.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "author": "julian rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
