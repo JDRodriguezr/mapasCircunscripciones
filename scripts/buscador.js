@@ -8472,6 +8472,10 @@ function generateTable(respuestaJson) {
   // creates a <table> element and a <tbody> element
   const tblBody = document.getElementById('tbody-respuesta');
 
+  while (tblBody.firstChild) {
+    tblBody.removeChild(tblBody.firstChild);
+  }
+
   // creating all cells
   for (let i = 0; i < respuestaJson.length; i++) {
     // creates a table row
@@ -8483,6 +8487,11 @@ function generateTable(respuestaJson) {
         `${JSON.stringify(respuestaJson[i].Consuladuria).replace(/['"]/g, '')}`
       );
       cell.appendChild(cellText);
+      darClaseSegunCircunscripcion(
+        cell,
+        JSON.stringify(respuestaJson[i].Consuladuria).replace(/['"]/g, '')
+      );
+
       row.appendChild(cell);
     }
     for (let j = 0; j < 1; j++) {
@@ -8507,11 +8516,38 @@ function generateTable(respuestaJson) {
       const cellText = document.createTextNode(
         `${JSON.stringify(respuestaJson[i].Parroquia).replace(/['"]/g, '')}`
       );
+
       cell.appendChild(cellText);
       row.appendChild(cell);
     }
 
     // add the row to the end of the table body
     tblBody.appendChild(row);
+  }
+
+  function darClaseSegunCircunscripcion(elemento, texto) {
+    switch (texto) {
+      case 'Guayaquil':
+        elemento.classList.add('clase-guayaquil');
+        return;
+      case 'Tulcan':
+        elemento.classList.add('clase-tulcan');
+        return;
+      case 'Quito':
+        elemento.classList.add('clase-quito');
+        return;
+      case 'Esmeraldas':
+        elemento.classList.add('clase-esmeraldas');
+        return;
+      case 'Santo Domingo De Los Colorados':
+        elemento.classList.add('clase-santodomingo');
+        return;
+      case 'Nueva Loja':
+        elemento.classList.add('clase-nuevaloja');
+        return;
+      case 'Otro':
+        elemento.classList.add('clase-otro');
+        return;
+    }
   }
 }

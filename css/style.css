@@ -4,18 +4,19 @@ body {
 
 #mapContainer {
     display: grid;
-    grid-template-columns: 3% 50% 3% 44%;
+    grid-template-columns: 2% 45% 3% 50%;
     width: auto;
 }
 
 #map {
+    margin-top: 70px;
     grid-column-start: 1;
 }
 
 .panelDerecho {
     grid-column-start: 4;
     display: grid;
-    grid-template-rows: 10% 10% 80%;
+    grid-template-rows: 60px 60px 1000px;
 }
 
 #casiBody {
@@ -35,16 +36,6 @@ body {
     grid-row-start: 1;
 }
 
-#barra-de-busqueda-con-boton {
-    grid-row-start: 2;
-}
-
-#btnBuscar {
-    height: 30px;
-    font-size: x-large;
-    display: inline-flex;
-    align-items: center;
-}
 
 .contenedor-iconos-redes {
     background-color: rgb(20, 89, 150);
@@ -166,7 +157,7 @@ body {
 
 .d-flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .row {
@@ -209,4 +200,147 @@ th {
     font-family: 'Times New Roman', Times, serif;
     font-size: large;
 
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#barra-de-busqueda-con-boton {
+    grid-row-start: 2;
+    max-height: 60px;
+
+}
+
+.main-search-input {
+    background: #fff;
+    padding: 0 120px 0 0;
+    border-radius: 1px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.3);
+}
+
+.fl-wrap {
+    float: left;
+    position: relative;
+    width: 50%;
+}
+
+.main-search-input:before {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    width: 35px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.41);
+    left: 50%;
+    margin-left: -25px;
+}
+
+.main-search-input-item {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid #eee;
+    height: 35px;
+    position: relative;
+}
+
+.main-search-input-item input:first-child {
+    border-radius: 100%;
+}
+
+.main-search-input-item input {
+    float: left;
+    border: none;
+    width: 100%;
+    font-size: large;
+    height: 35px;
+    padding-left: 20px;
+}
+
+.main-search-button {
+    background: #094268;
+}
+
+.main-search-button {
+    position: absolute;
+    right: 0px;
+    height: 35px;
+    width: 120px;
+    color: #fff;
+    top: 0;
+    border: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    cursor: pointer;
+}
+
+.main-search-input-wrap {
+    max-width: 500px;
+    position: relative;
+}
+
+:focus {
+    outline: 0;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .main-search-input {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 14px 20px 10px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.0);
+    }
+
+    .main-search-input-item {
+        width: 100%;
+        border: 1px solid #eee;
+        height: 35px;
+        border: none;
+        margin-bottom: 10px;
+    }
+
+    .main-search-input-item input {
+        border-radius: 6px !important;
+        background: #fff;
+    }
+
+    .main-search-button {
+        position: relative;
+        float: left;
+        width: 100%;
+        border-radius: 6px;
+    }
+
+
+}
+
+.clase-tulcan {
+    cursor: pointer;
+    color: rgb(175, 96, 206);
+    font-weight: bold;
+}
+
+.clase-guayaquil {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(94, 156, 70)
+}
+
+.clase-quito {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(201, 85, 76)
+}
+
+.clase-nuevaloja {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(243, 143, 61)
 }
