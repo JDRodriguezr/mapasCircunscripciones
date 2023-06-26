@@ -8391,6 +8391,9 @@ const archivoJSON = [
 const guayaquilCard = document.createElement('div');
 botonBuscar = document.getElementById('btnBuscar');
 const body = document.querySelector('body');
+window.addEventListener('mousemove', (event) => {
+  mousePos = { x: event.clientX, y: event.clientY };
+});
 
 document
   .getElementById('btnBuscar')
@@ -8412,9 +8415,6 @@ function mostrarResultados() {
     console.log(`No se ha encontrado informacion que contenga: ${datoBuscado}`);
     return;
   }
-  console.log(JSON.stringify(respuestaJson));
-  console.log(respuestaJson.length);
-  console.log(respuestaJson[1]);
   generateTable(respuestaJson);
 }
 
@@ -8439,17 +8439,14 @@ function generateTable(respuestaJson) {
     // creates a table row
     const row = document.createElement('tr');
 
+    //Consuladuria
     for (let j = 0; j < 1; j++) {
       const cell = document.createElement('td');
-      const cellText = document.createTextNode(
-        `${JSON.stringify(respuestaJson[i].Consuladuria).replace(/['"]/g, '')}`
-      );
-      cell.appendChild(cellText);
-      darClaseSegunCircunscripcion(
+      const carta = darClaseSegunCircunscripcion(
         cell,
         JSON.stringify(respuestaJson[i].Consuladuria).replace(/['"]/g, '')
       );
-
+      cell.appendChild(carta);
       row.appendChild(cell);
     }
     for (let j = 0; j < 1; j++) {
@@ -8474,7 +8471,6 @@ function generateTable(respuestaJson) {
       const cellText = document.createTextNode(
         `${JSON.stringify(respuestaJson[i].Parroquia).replace(/['"]/g, '')}`
       );
-
       cell.appendChild(cellText);
       row.appendChild(cell);
     }
@@ -8487,34 +8483,89 @@ function generateTable(respuestaJson) {
     switch (texto) {
       case 'Guayaquil':
         elemento.classList.add('clase-guayaquil');
-        const card = document.createElement('span');
-        card.classList.add('link');
-        card.setAttribute(
+        const cardGuayaquil = document.createElement('span');
+        cardGuayaquil.classList.add('link');
+        cardGuayaquil.setAttribute(
           'onmouseenter',
-          'displayCard(images/consulados/guayaquil.png, this);'
+          'displayCard("images/consulados/guayaquil.png", this);'
         );
-        elemento.appendChild(card);
+        cardGuayaquil.setAttribute('onmouseout', 'removeCard();');
+        const spanTextGuayaquil = document.createTextNode(`${texto}`);
+        cardGuayaquil.appendChild(spanTextGuayaquil);
+        return cardGuayaquil;
 
-        card.setAttribute('onmouseout', 'removeCard();');
-        return;
       case 'Tulcan':
         elemento.classList.add('clase-tulcan');
-        return;
+        const cardTulcan = document.createElement('span');
+        cardTulcan.classList.add('link');
+        cardTulcan.setAttribute(
+          'onmouseenter',
+          'displayCard("images/consulados/tulcan.png", this);'
+        );
+        cardTulcan.setAttribute('onmouseout', 'removeCard();');
+        const spanTextTulcan = document.createTextNode(`${texto}`);
+        cardTulcan.appendChild(spanTextTulcan);
+        return cardTulcan;
       case 'Quito':
         elemento.classList.add('clase-quito');
-        return;
+        const cardQuito = document.createElement('span');
+        cardQuito.classList.add('link');
+        cardQuito.setAttribute(
+          'onmouseenter',
+          'displayCard("images/consulados/quito.png", this);'
+        );
+        cardQuito.setAttribute('onmouseout', 'removeCard();');
+        const spanTextQuito = document.createTextNode(`${texto}`);
+        cardQuito.appendChild(spanTextQuito);
+        return cardQuito;
       case 'Esmeraldas':
         elemento.classList.add('clase-esmeraldas');
-        return;
+        const cardEsmeraldas = document.createElement('span');
+        cardEsmeraldas.classList.add('link');
+        cardEsmeraldas.setAttribute(
+          'onmouseenter',
+          'displayCard("images/consulados/esmeraldas.png", this);'
+        );
+        cardEsmeraldas.setAttribute('onmouseout', 'removeCard();');
+        const spanTextEsmeralda = document.createTextNode(`${texto}`);
+        cardEsmeraldas.appendChild(spanTextEsmeralda);
+        return card;
       case 'Santo Domingo De Los Colorados':
         elemento.classList.add('clase-santodomingo');
-        return;
+        const cardSantoDomingo = document.createElement('span');
+        cardSantoDomingo.classList.add('link');
+        cardSantoDomingo.setAttribute(
+          'onmouseenter',
+          'displayCard("images/consulados/santodomingo.png", this);'
+        );
+        cardSantoDomingo.setAttribute('onmouseout', 'removeCard();');
+        const spanTextSantoDomingo = document.createTextNode(`${texto}`);
+        cardSantoDomingo.appendChild(spanTextSantoDomingo);
+        return cardSantoDomingo;
       case 'Nueva Loja':
         elemento.classList.add('clase-nuevaloja');
-        return;
+        const cardNuevaLoja = document.createElement('span');
+        cardNuevaLoja.classList.add('link');
+        cardNuevaLoja.setAttribute(
+          'onmouseenter',
+          'displayCard("images/consulados/nuevaloja.png", this);'
+        );
+        cardNuevaLoja.setAttribute('onmouseout', 'removeCard();');
+        const spanTextNuevaLoja = document.createTextNode(`${texto}`);
+        cardNuevaLoja.appendChild(spanTextNuevaLoja);
+        return cardNuevaLoja;
       case 'Otro':
         elemento.classList.add('clase-otro');
-        return;
+        const cardOtro = document.createElement('span');
+        cardOtro.classList.add('link');
+        cardOtro.setAttribute(
+          'onmouseenter',
+          'displayCard("images/consulados/nuevaloja.png", this);'
+        );
+        cardOtro.setAttribute('onmouseout', 'removeCard();');
+        const spanTextOtro = document.createTextNode(`${texto}`);
+        cardOtro.appendChild(spanTextOtro);
+        return cardOtro;
     }
   }
 }
@@ -8523,10 +8574,19 @@ function displayCard(imgPath, elt) {
   body.appendChild(guayaquilCard);
   guayaquilCard.innerHTML = `<img src='${imgPath}'>`;
   guayaquilCard.classList.add('displayMe');
+  guayaquilCard.style.top = mousePos.y + 40 + 'px';
+
+  let difference = document.documentElement.clientWidth - elt.offsetLeft;
+
+  if (difference < 250) {
+    guayaquilCard.style.right = '20px';
+    guayaquilCard.style.left = 'auto';
+  } else {
+    guayaquilCard.style.left = mousePos.x + 'px';
+  }
+  guayaquilCard.style.animation = 'fadeIn .2s';
 }
 function removeCard() {
-  console.log('sali');
-  body.appendChild(guayaquilCard);
-  guayaquilCard.innerHTML = `<img src='${imgPath}'>`;
-  guayaquilCard.classList.add('displayMe');
+  guayaquilCard.style.animation = 'fadeOut .1s';
+  body.removeChild(guayaquilCard);
 }

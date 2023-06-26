@@ -329,7 +329,7 @@ th {
 
 .clase-guayaquil {
     font-weight: bold;
-
+    cursor: pointer;
     color: rgb(94, 156, 70)
 }
 
@@ -352,8 +352,8 @@ span.link {
 }
 
 .displayMe {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 1300px;
+    max-height: 300px;
     position: absolute;
     z-index: 100;
 }
@@ -361,4 +361,24 @@ span.link {
 .displayMe img {
     width: 100%;
     box-shadow: 2px 2px 5px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
