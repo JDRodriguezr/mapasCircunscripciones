@@ -329,7 +329,7 @@ th {
 
 .clase-guayaquil {
     font-weight: bold;
-    cursor: pointer;
+
     color: rgb(94, 156, 70)
 }
 
@@ -343,4 +343,22 @@ th {
     font-weight: bold;
     cursor: pointer;
     color: rgb(243, 143, 61)
+}
+
+span.link {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.displayMe {
+    max-width: 250px;
+    max-height: 250px;
+    position: absolute;
+    z-index: 100;
+}
+
+.displayMe img {
+    width: 100%;
+    box-shadow: 2px 2px 5px;
 }

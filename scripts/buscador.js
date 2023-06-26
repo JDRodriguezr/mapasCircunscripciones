@@ -8388,18 +8388,17 @@ const archivoJSON = [
     Parroquia: 'EL PIEDRERO',
   },
 ];
-
+const guayaquilCard = document.createElement('div');
 botonBuscar = document.getElementById('btnBuscar');
+const body = document.querySelector('body');
 
 document
   .getElementById('btnBuscar')
   .addEventListener('click', mostrarResultados);
 
 function mostrarResultados() {
-  //generateTable();
   let datoBuscado = document.getElementById('inputBuscador').value;
   console.log('Dato ingresado: ', datoBuscado);
-  // En caso de que no haya nada en el buscador
   if (datoBuscado == '') {
     console.log(
       'Por favor escriba el nombre de la parroquia, provincia o cantón y luego oprima el boton Buscar'
@@ -8417,7 +8416,6 @@ function mostrarResultados() {
   console.log(respuestaJson.length);
   console.log(respuestaJson[1]);
   generateTable(respuestaJson);
-  //AQUI DEBERIA GENERARSE LA TABLA CON LOS RESULTADOS
 }
 
 function buscarDatoEnJSON(datoBuscado) {
@@ -8428,46 +8426,6 @@ function buscarDatoEnJSON(datoBuscado) {
 
   return resultados.length > 0 ? resultados : null;
 }
-
-/*function generateTable(jsonRespuesta) {
-  const tbl = document.getElementById('respuesta');
-  const tblBody = document.getElementById('tbody-respuesta');
-
-
-  for (let i = 0; i < jsonRespuesta; i++) {
-    const row = document.createElement('tr');
-
-    const consuladuria = document.createElement('td');
-    const consuldariaText = document.createTextNode(
-      JSON.stringify(jsonRespuesta[i].Consuladuria)
-    );
-    consuladuria.appendChild(consuldariaText);
-    row.appendChild(consuladuria);
-    const provincia = document.createElement('td');
-    const provinciaText = document.createTextNode(
-      JSON.stringify(jsonRespuesta[i].Provincia)
-    );
-    provincia.appendChild(provinciaText);
-    row.appendChild(provincia);
-    const canton = document.createElement('td');
-    const cantonText = document.createTextNode(
-      JSON.stringify(jsonRespuesta[i].Cantón)
-    );
-    canton.appendChild(cantonText);
-    row.appendChild(canton);
-    const parroquia = document.createElement('td');
-    const parroquiaTexto = document.createTextNode(
-      JSON.stringify(jsonRespuesta[i].Parroquia)
-    );
-    parroquia.appendChild(parroquiaTexto);
-    row.appendChild(parroquia);
-
-    // add the row to the end of the table body
-    console.log('Voy a intentar crear una tabla');
-    tblBody.appendChild(row);
-
-  }
-}*/
 function generateTable(respuestaJson) {
   // creates a <table> element and a <tbody> element
   const tblBody = document.getElementById('tbody-respuesta');
@@ -8529,6 +8487,15 @@ function generateTable(respuestaJson) {
     switch (texto) {
       case 'Guayaquil':
         elemento.classList.add('clase-guayaquil');
+        const card = document.createElement('span');
+        card.classList.add('link');
+        card.setAttribute(
+          'onmouseenter',
+          'displayCard(images/consulados/guayaquil.png, this);'
+        );
+        elemento.appendChild(card);
+
+        card.setAttribute('onmouseout', 'removeCard();');
         return;
       case 'Tulcan':
         elemento.classList.add('clase-tulcan');
@@ -8550,4 +8517,16 @@ function generateTable(respuestaJson) {
         return;
     }
   }
+}
+function displayCard(imgPath, elt) {
+  console.log('entre');
+  body.appendChild(guayaquilCard);
+  guayaquilCard.innerHTML = `<img src='${imgPath}'>`;
+  guayaquilCard.classList.add('displayMe');
+}
+function removeCard() {
+  console.log('sali');
+  body.appendChild(guayaquilCard);
+  guayaquilCard.innerHTML = `<img src='${imgPath}'>`;
+  guayaquilCard.classList.add('displayMe');
 }
