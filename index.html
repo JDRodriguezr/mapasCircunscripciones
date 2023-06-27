@@ -293,23 +293,28 @@
       </section>
     </div>
     <div id="tituloMapaContainer">
-      <h1 class="link" onmouseenter="displayCard('images/header/govco.png', this);" onmouseout="removeCard();">Mapa de
-        Ecuador Interactivo</h1>
+      <h1>Mapa de Ecuador Interactivo</h1>
     </div>
     <div id="mapContainer">
       <div id="map"></div><!-- No mover esto por nada del mundo -->
       <div class="panelDerecho">
-        <h1 id="titulo-buscador">Buscador de cosas</h1>
+        <h1 id="titulo-buscador">Consulta circunscripción consular</h1>
         <div id="barra-de-busqueda-con-boton">
+
           <div class="main-search-input-wrap">
             <div class="main-search-input fl-wrap">
               <div class="main-search-input-item">
                 <input type="text" id="inputBuscador" value="" placeholder="Parroquia, canton, provincia...">
               </div>
               <button id="btnBuscar" class="main-search-button">Buscar</button>
+
             </div>
           </div>
+          <div class="contenedor-basura">
+            <img src="./images/consulta/basura-icono.png" alt="basura" id="boton-basura">
+          </div>
         </div>
+        <p class="error-message" id="mensajesDeError"></p>
         <table id="respuesta">
           <tr>
             <th>Circunscripción consular</th>

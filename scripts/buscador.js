@@ -8391,6 +8391,10 @@ const archivoJSON = [
 const guayaquilCard = document.createElement('div');
 botonBuscar = document.getElementById('btnBuscar');
 const body = document.querySelector('body');
+const tblBody = document.getElementById('tbody-respuesta');
+const barraConsulta = document.getElementById('inputBuscador');
+const mensajeDeError = document.getElementById('mensajesDeError');
+let datoBuscado = document.getElementById('inputBuscador').value;
 window.addEventListener('mousemove', (event) => {
   mousePos = { x: event.clientX, y: event.clientY };
 });
@@ -8398,23 +8402,40 @@ window.addEventListener('mousemove', (event) => {
 document
   .getElementById('btnBuscar')
   .addEventListener('click', mostrarResultados);
+document
+  .getElementById('boton-basura')
+  .addEventListener('click', limpiarResultados);
+
+function limpiarResultados() {
+  // Limpia la tabla
+  while (tblBody.firstChild) {
+    tblBody.removeChild(tblBody.firstChild);
+  }
+  // Limpia la barra de busqueda
+  barraConsulta.value = '';
+  removeErrorMessageText();
+}
 
 function mostrarResultados() {
-  let datoBuscado = document.getElementById('inputBuscador').value;
-  console.log('Dato ingresado: ', datoBuscado);
+  datoBuscado = document.getElementById('inputBuscador').value;
   if (datoBuscado == '') {
-    console.log(
-      'Por favor escriba el nombre de la parroquia, provincia o cantón y luego oprima el boton Buscar'
-    );
+    while (tblBody.firstChild) {
+      tblBody.removeChild(tblBody.firstChild);
+    }
+    mensajeDeError.innerText =
+      'Por favor ingrese parroquia, provincia o cantón antes de Buscar';
+
+    mensajeDeError.setAttribute('visibility', 'visible');
     return;
   }
 
   let respuestaJson = buscarDatoEnJSON(datoBuscado);
   // Si no encuentra nada de info en la base de datos
   if (!respuestaJson) {
-    console.log(`No se ha encontrado informacion que contenga: ${datoBuscado}`);
+    mensajeDeError.innerText = `No se ha encontrado informacion que contenga: ${datoBuscado}`;
     return;
   }
+  removeErrorMessageText();
   generateTable(respuestaJson);
 }
 
@@ -8428,14 +8449,13 @@ function buscarDatoEnJSON(datoBuscado) {
 }
 function generateTable(respuestaJson) {
   // creates a <table> element and a <tbody> element
-  const tblBody = document.getElementById('tbody-respuesta');
 
   while (tblBody.firstChild) {
     tblBody.removeChild(tblBody.firstChild);
   }
 
   // creating all cells
-  for (let i = 0; i < respuestaJson.length; i++) {
+  for (let i = 0; i < 20 /*respuestaJson.length*/; i++) {
     // creates a table row
     const row = document.createElement('tr');
 
@@ -8570,7 +8590,6 @@ function generateTable(respuestaJson) {
   }
 }
 function displayCard(imgPath, elt) {
-  console.log('entre');
   body.appendChild(guayaquilCard);
   guayaquilCard.innerHTML = `<img src='${imgPath}'>`;
   guayaquilCard.classList.add('displayMe');
@@ -8589,4 +8608,7 @@ function displayCard(imgPath, elt) {
 function removeCard() {
   guayaquilCard.style.animation = 'fadeOut .1s';
   body.removeChild(guayaquilCard);
+}
+function removeErrorMessageText() {
+  mensajeDeError.innerText = '';
 }

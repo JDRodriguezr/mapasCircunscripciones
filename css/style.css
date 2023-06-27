@@ -16,7 +16,13 @@ body {
 .panelDerecho {
     grid-column-start: 4;
     display: grid;
-    grid-template-rows: 60px 60px 1000px;
+    grid-template-rows: 60px 60px 22px 600px;
+    overflow: hidden;
+    max-height: 100%;
+}
+
+.error-message {
+    color: #a10f0f;
 }
 
 #casiBody {
@@ -115,7 +121,7 @@ body {
     color: var(--bs-body-color);
     text-align: var(--bs-body-text-align);
     -webkit-text-size-adjust: 100%;
-    background-color: rgb(243, 243, 206);
+    background-color: rgb(255, 255, 255);
 }
 
 .region-govco {
@@ -183,6 +189,7 @@ td {
     padding-left: 1.5rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
+    font-size: small;
 }
 
 table {
@@ -197,7 +204,7 @@ th {
     border: 2px solid;
     height: 2rem;
     max-height: 2rem;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: large;
 
 }
@@ -211,9 +218,15 @@ th {
 }
 
 #barra-de-busqueda-con-boton {
+    margin-top: 2px;
     grid-row-start: 2;
     max-height: 60px;
+    margin-left: 6px;
+    margin-bottom: 20px;
+}
 
+#respuesta {
+    grid-row-start: 4;
 }
 
 .main-search-input {
@@ -221,13 +234,13 @@ th {
     padding: 0 120px 0 0;
     border-radius: 1px;
     margin-top: 10px;
-    box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 0px 6px rgba(22, 55, 245, 0.5);
 }
 
 .fl-wrap {
     float: left;
     position: relative;
-    width: 50%;
+    width: 60%;
 }
 
 .main-search-input:before {
@@ -271,7 +284,7 @@ th {
     position: absolute;
     right: 0px;
     height: 35px;
-    width: 120px;
+    width: 160px;
     color: #fff;
     top: 0;
     border: none;
@@ -281,7 +294,7 @@ th {
 }
 
 .main-search-input-wrap {
-    max-width: 500px;
+    max-width: 600px;
     position: relative;
 }
 
@@ -381,4 +394,30 @@ span.link {
     100% {
         opacity: 0;
     }
+}
+
+#boton-basura {
+
+    width: 45px;
+    height: 45px;
+
+}
+
+.contenedor-basura {
+
+    margin-top: 5px;
+    margin-left: 1rem;
+    text-align: center;
+    border-radius: 15%;
+    float: inline-start;
+    background: #ff000013;
+}
+
+.contenedor-basura :hover {
+
+    cursor: pointer;
+    border-radius: 15%;
+    background: #ff000060;
+
+
 }

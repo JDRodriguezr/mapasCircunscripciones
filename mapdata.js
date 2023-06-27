@@ -1,7 +1,7 @@
 var simplemaps_countrymap_mapdata = {
   main_settings: {
     //General settings
-    width: '900', //'700' or 'responsive'
+    width: '600', //'700' or 'responsive'
     background_color: '#837f7f',
     background_transparent: 'yes',
     border_color: '#ffffff',
@@ -119,7 +119,7 @@ var simplemaps_countrymap_mapdata = {
       name: 'Cotopaxi',
       color: '#ba6eac',
       hover_color: '#b3399d',
-      description: 'Circunscripción consular de Tulcan',
+      description: 'Circunscripción consular de Quito',
     },
     ECU1280: {
       name: 'Guayas',
@@ -191,13 +191,13 @@ var simplemaps_countrymap_mapdata = {
       name: 'Carchi',
       color: '#e65151',
       hover_color: '#e62a2a',
-      description: 'Circunscripción consular de Quito',
+      description: 'Circunscripción consular de Tulcann',
     },
     ECU1410: {
       name: 'Imbabura',
       color: '#e65151',
       hover_color: '#e62a2a',
-      description: 'Circunscripción consular de Quito',
+      description: 'Circunscripción consular de Tulcann',
     },
     ECU1411: {
       name: 'Sucumbios',
