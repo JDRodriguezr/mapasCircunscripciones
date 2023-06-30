@@ -10,7 +10,8 @@ body {
 
 #map {
     margin-top: 70px;
-    grid-column-start: 1;
+    grid-column-start: 2;
+    text-align: center;
 }
 
 .panelDerecho {
@@ -243,6 +244,12 @@ th {
     width: 60%;
 }
 
+.map {
+    text-align: center;
+}
+
+
+
 .main-search-input:before {
     content: '';
     position: absolute;
@@ -365,7 +372,7 @@ span.link {
 }
 
 .displayMe {
-    max-width: 1300px;
+    max-width: 900px;
     max-height: 300px;
     position: absolute;
     z-index: 100;
@@ -397,15 +404,13 @@ span.link {
 }
 
 #boton-basura {
-
-    width: 45px;
-    height: 45px;
-
+    width: 30px;
+    height: 30px;
 }
 
 .contenedor-basura {
-
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 1rem;
     text-align: center;
     border-radius: 15%;
@@ -414,10 +419,108 @@ span.link {
 }
 
 .contenedor-basura :hover {
-
     cursor: pointer;
     border-radius: 15%;
     background: #ff000060;
+}
+
+svg {
+    height: 60%;
+}
+
+.cls-1,
+.cls-2,
+.cls-3,
+.cls-4,
+.cls-5,
+.cls-6,
+.cls-7,
+.cls-8,
+.cls-9,
+.cls-10 {
+    stroke: #fff;
+    stroke-miterlimit: 10;
+}
+
+.cls-1,
+.cls-2,
+.cls-7,
+.cls-10 {
+    fill: #91bd5f;
+}
 
 
+.cls-2,
+.cls-3,
+.cls-4,
+.cls-6,
+.cls-8,
+.cls-9,
+.cls-10 {
+    stroke-width: 3px;
+}
+
+.cls-3 {
+    fill: #f59f26c4;
+}
+
+.cls-4 {
+    fill: #33cbd3be;
+}
+
+.cls-5 {
+    fill: #e63d3dc4;
+    stroke-width: 2px;
+}
+
+.cls-6 {
+    fill: none;
+}
+
+.cls-7 {
+    stroke-width: .75px;
+}
+
+.cls-8 {
+    fill: #dfd436c4;
+}
+
+.cls-9 {
+    fill: #85069eb7;
+}
+
+#consulado_guayaquil_svg:hover path {
+    fill: #420fcfc9;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+#consulado_nuevaloja_svg:hover path {
+    fill: #420fcfc9;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+#consulado_quito_svg:hover path {
+    fill: #420fcfc9;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+#consulado_santodomingo_svg:hover path {
+    fill: #420fcfc9;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+#consulado_tulcan_svg:hover path {
+    fill: #420fcfc9;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+#consulado_esmeraldas_svg:hover path {
+    fill: #420fcfc9;
+    transition: 0.6s;
+    cursor: pointer;
 }

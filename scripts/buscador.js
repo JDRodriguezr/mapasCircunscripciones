@@ -8388,12 +8388,13 @@ const archivoJSON = [
     Parroquia: 'EL PIEDRERO',
   },
 ];
-const guayaquilCard = document.createElement('div');
+const cardOnHover = document.createElement('div');
 botonBuscar = document.getElementById('btnBuscar');
 const body = document.querySelector('body');
 const tblBody = document.getElementById('tbody-respuesta');
 const barraConsulta = document.getElementById('inputBuscador');
 const mensajeDeError = document.getElementById('mensajesDeError');
+// const regionQuitoSvg = document.getElementById('consulado_quito_svg');
 let datoBuscado = document.getElementById('inputBuscador').value;
 window.addEventListener('mousemove', (event) => {
   mousePos = { x: event.clientX, y: event.clientY };
@@ -8590,25 +8591,33 @@ function generateTable(respuestaJson) {
   }
 }
 function displayCard(imgPath, elt) {
-  body.appendChild(guayaquilCard);
-  guayaquilCard.innerHTML = `<img src='${imgPath}'>`;
-  guayaquilCard.classList.add('displayMe');
-  guayaquilCard.style.top = mousePos.y + 40 + 'px';
+  body.appendChild(cardOnHover);
+  cardOnHover.innerHTML = `<img src='${imgPath}'>`;
+  cardOnHover.classList.add('displayMe');
+  cardOnHover.style.top = mousePos.y + 40 + 'px';
 
   let difference = document.documentElement.clientWidth - elt.offsetLeft;
 
   if (difference < 250) {
-    guayaquilCard.style.right = '20px';
-    guayaquilCard.style.left = 'auto';
+    cardOnHover.style.right = '20px';
+    cardOnHover.style.left = 'auto';
   } else {
-    guayaquilCard.style.left = mousePos.x + 'px';
+    cardOnHover.style.left = mousePos.x + 'px';
   }
-  guayaquilCard.style.animation = 'fadeIn .2s';
+  cardOnHover.style.animation = 'fadeIn .2s';
 }
+
 function removeCard() {
-  guayaquilCard.style.animation = 'fadeOut .1s';
-  body.removeChild(guayaquilCard);
+  cardOnHover.style.animation = 'fadeOut .1s';
+  body.removeChild(cardOnHover);
 }
 function removeErrorMessageText() {
   mensajeDeError.innerText = '';
 }
+
+barraConsulta.addEventListener('keypress', function (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    botonBuscar.click();
+  }
+});
