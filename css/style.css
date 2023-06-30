@@ -373,7 +373,7 @@ span.link {
 
 .displayMe {
     max-width: 900px;
-    max-height: 300px;
+    max-height: 350px;
     position: absolute;
     z-index: 100;
 }

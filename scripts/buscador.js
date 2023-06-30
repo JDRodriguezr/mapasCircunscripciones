@@ -8389,11 +8389,17 @@ const archivoJSON = [
   },
 ];
 const cardOnHover = document.createElement('div');
-botonBuscar = document.getElementById('btnBuscar');
+const botonBuscar = document.getElementById('btnBuscar');
 const body = document.querySelector('body');
 const tblBody = document.getElementById('tbody-respuesta');
 const barraConsulta = document.getElementById('inputBuscador');
 const mensajeDeError = document.getElementById('mensajesDeError');
+const pathsGuayaquil = document.getElementsByClassName('paths-guayaquil');
+const pathsTulcan = document.getElementsByClassName('paths-tulcan');
+const pathsNuevaloja = document.getElementsByClassName('paths-nuevaloja');
+const pathsQuito = document.getElementsByClassName('paths-quito');
+const pathsSantodomingo = document.getElementsByClassName('paths-santodomingo');
+const pathsEsmeraldas = document.getElementsByClassName('paths-esmeraldas');
 // const regionQuitoSvg = document.getElementById('consulado_quito_svg');
 let datoBuscado = document.getElementById('inputBuscador').value;
 window.addEventListener('mousemove', (event) => {
@@ -8431,6 +8437,7 @@ function mostrarResultados() {
   }
 
   let respuestaJson = buscarDatoEnJSON(datoBuscado);
+  console.log(respuestaJson);
   // Si no encuentra nada de info en la base de datos
   if (!respuestaJson) {
     mensajeDeError.innerText = `No se ha encontrado informacion que contenga: ${datoBuscado}`;
@@ -8454,9 +8461,15 @@ function generateTable(respuestaJson) {
   while (tblBody.firstChild) {
     tblBody.removeChild(tblBody.firstChild);
   }
+  let iteraciones;
+  if (respuestaJson.length > 20) {
+    iteraciones = 20;
+  } else {
+    iteraciones = respuestaJson.length;
+  }
 
   // creating all cells
-  for (let i = 0; i < 20 /*respuestaJson.length*/; i++) {
+  for (let i = 0; i < iteraciones /*respuestaJson.length*/; i++) {
     // creates a table row
     const row = document.createElement('tr');
 
@@ -8508,9 +8521,12 @@ function generateTable(respuestaJson) {
         cardGuayaquil.classList.add('link');
         cardGuayaquil.setAttribute(
           'onmouseenter',
-          'displayCard("images/consulados/guayaquil.png", this);'
+          'displayCard("images/consulados/guayaquil.png", this); highlightMapDesdeTabla("guayaquil");'
         );
-        cardGuayaquil.setAttribute('onmouseout', 'removeCard();');
+        cardGuayaquil.setAttribute(
+          'onmouseout',
+          'removeCard(); apagarHighlight("guayaquil")'
+        );
         const spanTextGuayaquil = document.createTextNode(`${texto}`);
         cardGuayaquil.appendChild(spanTextGuayaquil);
         return cardGuayaquil;
@@ -8521,9 +8537,12 @@ function generateTable(respuestaJson) {
         cardTulcan.classList.add('link');
         cardTulcan.setAttribute(
           'onmouseenter',
-          'displayCard("images/consulados/tulcan.png", this);'
+          'displayCard("images/consulados/tulcan.png", this); highlightMapDesdeTabla("tulcan");'
         );
-        cardTulcan.setAttribute('onmouseout', 'removeCard();');
+        cardTulcan.setAttribute(
+          'onmouseout',
+          'removeCard(); apagarHighlight("tulcan")'
+        );
         const spanTextTulcan = document.createTextNode(`${texto}`);
         cardTulcan.appendChild(spanTextTulcan);
         return cardTulcan;
@@ -8533,9 +8552,12 @@ function generateTable(respuestaJson) {
         cardQuito.classList.add('link');
         cardQuito.setAttribute(
           'onmouseenter',
-          'displayCard("images/consulados/quito.png", this);'
+          'displayCard("images/consulados/quito.png", this); highlightMapDesdeTabla("quito");'
         );
-        cardQuito.setAttribute('onmouseout', 'removeCard();');
+        cardQuito.setAttribute(
+          'onmouseout',
+          'removeCard(); apagarHighlight("quito")'
+        );
         const spanTextQuito = document.createTextNode(`${texto}`);
         cardQuito.appendChild(spanTextQuito);
         return cardQuito;
@@ -8545,21 +8567,27 @@ function generateTable(respuestaJson) {
         cardEsmeraldas.classList.add('link');
         cardEsmeraldas.setAttribute(
           'onmouseenter',
-          'displayCard("images/consulados/esmeraldas.png", this);'
+          'displayCard("images/consulados/esmeraldas.png", this); highlightMapDesdeTabla("esmeraldas");'
         );
-        cardEsmeraldas.setAttribute('onmouseout', 'removeCard();');
+        cardEsmeraldas.setAttribute(
+          'onmouseout',
+          'removeCard(); apagarHighlight("esmeraldas")'
+        );
         const spanTextEsmeralda = document.createTextNode(`${texto}`);
         cardEsmeraldas.appendChild(spanTextEsmeralda);
-        return card;
+        return cardEsmeraldas;
       case 'Santo Domingo De Los Colorados':
         elemento.classList.add('clase-santodomingo');
         const cardSantoDomingo = document.createElement('span');
         cardSantoDomingo.classList.add('link');
         cardSantoDomingo.setAttribute(
           'onmouseenter',
-          'displayCard("images/consulados/santodomingo.png", this);'
+          'displayCard("images/consulados/santodomingo.png", this); highlightMapDesdeTabla("santodomingo");'
         );
-        cardSantoDomingo.setAttribute('onmouseout', 'removeCard();');
+        cardSantoDomingo.setAttribute(
+          'onmouseout',
+          'removeCard(); apagarHighlight("santodomingo")'
+        );
         const spanTextSantoDomingo = document.createTextNode(`${texto}`);
         cardSantoDomingo.appendChild(spanTextSantoDomingo);
         return cardSantoDomingo;
@@ -8569,9 +8597,12 @@ function generateTable(respuestaJson) {
         cardNuevaLoja.classList.add('link');
         cardNuevaLoja.setAttribute(
           'onmouseenter',
-          'displayCard("images/consulados/nuevaloja.png", this);'
+          'displayCard("images/consulados/nuevaloja.png", this); highlightMapDesdeTabla("nuevaloja");'
         );
-        cardNuevaLoja.setAttribute('onmouseout', 'removeCard();');
+        cardNuevaLoja.setAttribute(
+          'onmouseout',
+          'removeCard(); apagarHighlight("nuevaloja")'
+        );
         const spanTextNuevaLoja = document.createTextNode(`${texto}`);
         cardNuevaLoja.appendChild(spanTextNuevaLoja);
         return cardNuevaLoja;
@@ -8581,9 +8612,12 @@ function generateTable(respuestaJson) {
         cardOtro.classList.add('link');
         cardOtro.setAttribute(
           'onmouseenter',
-          'displayCard("images/consulados/nuevaloja.png", this);'
+          'displayCard("images/consulados/nuevaloja.png", this); highlightMapDesdeTabla("otro");'
         );
-        cardOtro.setAttribute('onmouseout', 'removeCard();');
+        cardOtro.setAttribute(
+          'onmouseout',
+          'removeCard(); apagarHighlight("otro")'
+        );
         const spanTextOtro = document.createTextNode(`${texto}`);
         cardOtro.appendChild(spanTextOtro);
         return cardOtro;
@@ -8613,6 +8647,105 @@ function removeCard() {
 }
 function removeErrorMessageText() {
   mensajeDeError.innerText = '';
+}
+function highlightMapDesdeTabla(nombreRegion) {
+  switch (nombreRegion) {
+    case 'guayaquil': {
+      console.log('esto deberia ser la funcionalidad de alumbrar guayaquil');
+      for (path of pathsGuayaquil) {
+        path.style.transition = '#0.6s';
+        path.style.fill = '#420fcfc9';
+      }
+      return;
+    }
+    case 'tulcan': {
+      console.log('esto deberia ser la funcionalidad de alumbrar tulcan');
+      for (path of pathsTulcan) {
+        path.style.transition = '#0.6s';
+        path.style.fill = '#420fcfc9';
+      }
+      return;
+    }
+    case 'santodomingo': {
+      console.log('esto deberia ser la funcionalidad de alumbrar santodomingo');
+      for (path of pathsSantodomingo) {
+        path.style.transition = '#0.6s';
+        path.style.fill = '#420fcfc9';
+      }
+      return;
+    }
+    case 'esmeraldas': {
+      console.log('esto deberia ser la funcionalidad de alumbrar esmeraldas');
+      for (path of pathsEsmeraldas) {
+        path.style.transition = '#0.6s';
+        path.style.fill = '#420fcfc9';
+      }
+      return;
+    }
+    case 'quito': {
+      console.log('esto deberia ser la funcionalidad de alumbrar quito');
+      for (path of pathsQuito) {
+        path.style.transition = '#0.6s';
+        path.style.fill = '#420fcfc9';
+      }
+      return;
+    }
+    case 'nuevaloja': {
+      console.log('esto deberia ser la funcionalidad de alumbrar nuevaloja');
+      for (path of pathsNuevaloja) {
+        path.style.transition = '#0.6s';
+        path.style.fill = '#420fcfc9';
+      }
+      return;
+    }
+  }
+}
+
+function apagarHighlight(nombreRegion) {
+  switch (nombreRegion) {
+    case 'guayaquil': {
+      console.log('esto deberia ser la funcionalidad de apagar guayaquil');
+      for (path of pathsGuayaquil) {
+        path.style.fill = '#91bd5f';
+      }
+      return;
+    }
+    case 'tulcan': {
+      console.log('esto deberia ser la funcionalidad de apagar tulcan');
+      for (path of pathsTulcan) {
+        path.style.fill = '#85069eb7';
+      }
+      return;
+    }
+    case 'santodomingo': {
+      console.log('esto deberia ser la funcionalidad de apagar santodomingo');
+      for (path of pathsSantodomingo) {
+        path.style.fill = '#dfd436c4';
+      }
+      return;
+    }
+    case 'esmeraldas': {
+      console.log('esto deberia ser la funcionalidad de apagar esmeraldas');
+      for (path of pathsEsmeraldas) {
+        path.style.fill = '33cbd3be';
+      }
+      return;
+    }
+    case 'quito': {
+      console.log('esto deberia ser la funcionalidad de apagar quito');
+      for (path of pathsQuito) {
+        path.style.fill = '#e63d3dc4';
+      }
+      return;
+    }
+    case 'nuevaloja': {
+      console.log('esto deberia ser la funcionalidad de apagar nuevaloja');
+      for (path of pathsNuevaloja) {
+        path.style.fill = '#f59f26c4';
+      }
+      return;
+    }
+  }
 }
 
 barraConsulta.addEventListener('keypress', function (event) {
