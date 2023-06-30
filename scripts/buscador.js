@@ -8648,52 +8648,48 @@ function removeCard() {
 function removeErrorMessageText() {
   mensajeDeError.innerText = '';
 }
+
 function highlightMapDesdeTabla(nombreRegion) {
   switch (nombreRegion) {
     case 'guayaquil': {
       console.log('esto deberia ser la funcionalidad de alumbrar guayaquil');
       for (path of pathsGuayaquil) {
-        path.style.transition = '#0.6s';
+        path.style.animation = 'highlightInGuayaquil .4s';
         path.style.fill = '#420fcfc9';
       }
       return;
     }
     case 'tulcan': {
-      console.log('esto deberia ser la funcionalidad de alumbrar tulcan');
       for (path of pathsTulcan) {
-        path.style.transition = '#0.6s';
+        path.style.animation = 'highlightInTulcan .4s';
         path.style.fill = '#420fcfc9';
       }
       return;
     }
     case 'santodomingo': {
-      console.log('esto deberia ser la funcionalidad de alumbrar santodomingo');
       for (path of pathsSantodomingo) {
-        path.style.transition = '#0.6s';
+        path.style.animation = 'highlightInSantodomingo .4s';
         path.style.fill = '#420fcfc9';
       }
       return;
     }
     case 'esmeraldas': {
-      console.log('esto deberia ser la funcionalidad de alumbrar esmeraldas');
       for (path of pathsEsmeraldas) {
-        path.style.transition = '#0.6s';
+        path.style.animation = 'highlightInEsmeraldas .4s';
         path.style.fill = '#420fcfc9';
       }
       return;
     }
     case 'quito': {
-      console.log('esto deberia ser la funcionalidad de alumbrar quito');
       for (path of pathsQuito) {
-        path.style.transition = '#0.6s';
+        path.style.animation = 'highlightInQuito .4s';
         path.style.fill = '#420fcfc9';
       }
       return;
     }
     case 'nuevaloja': {
-      console.log('esto deberia ser la funcionalidad de alumbrar nuevaloja');
       for (path of pathsNuevaloja) {
-        path.style.transition = '#0.6s';
+        path.style.animation = 'highlightInNuevaloja .4s';
         path.style.fill = '#420fcfc9';
       }
       return;
@@ -8704,22 +8700,25 @@ function highlightMapDesdeTabla(nombreRegion) {
 function apagarHighlight(nombreRegion) {
   switch (nombreRegion) {
     case 'guayaquil': {
-      console.log('esto deberia ser la funcionalidad de apagar guayaquil');
       for (path of pathsGuayaquil) {
+        path.style.animation = 'highlightOutGuayaquil .4s';
+        path.style.fill = '#91bd5f';
         path.style.removeProperty('fill');
       }
       return;
     }
     case 'tulcan': {
-      console.log('esto deberia ser la funcionalidad de apagar tulcan');
       for (path of pathsTulcan) {
+        path.style.animation = 'highlightOutTulcan .4s';
+        path.style.fill = '#85069eb7';
         path.style.removeProperty('fill');
       }
       return;
     }
     case 'santodomingo': {
-      console.log('esto deberia ser la funcionalidad de apagar santodomingo');
       for (path of pathsSantodomingo) {
+        path.style.animation = 'highlightOutSantodomingo .4s';
+        path.style.fill = '#dfd436c4';
         path.style.removeProperty('fill');
       }
       return;
@@ -8727,6 +8726,8 @@ function apagarHighlight(nombreRegion) {
     case 'esmeraldas': {
       console.log('esto deberia ser la funcionalidad de apagar esmeraldas');
       for (path of pathsEsmeraldas) {
+        path.style.animation = 'highlightOutEsmeraldas .4s';
+        path.style.fill = '#33cbd3be';
         path.style.removeProperty('fill');
       }
       return;
@@ -8734,6 +8735,8 @@ function apagarHighlight(nombreRegion) {
     case 'quito': {
       console.log('esto deberia ser la funcionalidad de apagar quito');
       for (path of pathsQuito) {
+        path.style.animation = 'highlightOutQuito .4s';
+        path.style.fill = '#e63d3dc4';
         path.style.removeProperty('fill');
       }
       return;
@@ -8741,6 +8744,8 @@ function apagarHighlight(nombreRegion) {
     case 'nuevaloja': {
       console.log('esto deberia ser la funcionalidad de apagar nuevaloja');
       for (path of pathsNuevaloja) {
+        path.style.animation = 'highlightOutNuevaloja .4s';
+        path.style.fill = '#f59f26c4';
         path.style.removeProperty('fill');
       }
       return;

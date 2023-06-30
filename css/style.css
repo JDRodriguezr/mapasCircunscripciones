@@ -361,6 +361,138 @@ span.link {
     box-shadow: 2px 2px 5px;
 }
 
+@keyframes highlightInNuevaloja {
+    0% {
+        fill: #f59f26c4;
+
+    }
+
+    100% {
+        fill: #420fcfc9;
+    }
+}
+
+@keyframes highlightOutNuevaloja {
+    0% {
+        fill: #420fcfc9;
+    }
+
+    100% {
+
+        fill: #f59f26c4;
+    }
+}
+
+@keyframes highlightInEsmeraldas {
+    0% {
+        fill: #33cbd3be;
+
+    }
+
+    100% {
+        fill: #420fcfc9;
+    }
+}
+
+@keyframes highlightOutEsmeraldas {
+    0% {
+        fill: #420fcfc9;
+    }
+
+    100% {
+
+        fill: #33cbd3be;
+    }
+}
+
+@keyframes highlightInGuayaquil {
+    0% {
+        fill: #91bd5f;
+
+    }
+
+    100% {
+        fill: #420fcfc9;
+    }
+}
+
+@keyframes highlightOutGuayaquil {
+    0% {
+        fill: #420fcfc9;
+    }
+
+    100% {
+
+        fill: #91bd5f;
+    }
+}
+
+@keyframes highlightInQuito {
+    0% {
+        fill: #e63d3dc4;
+
+    }
+
+    100% {
+        fill: #420fcfc9;
+    }
+}
+
+@keyframes highlightOutQuito {
+    0% {
+        fill: #420fcfc9;
+    }
+
+    100% {
+
+        fill: #e63d3dc4;
+    }
+}
+
+@keyframes highlightInTulcan {
+    0% {
+        fill: #85069eb7;
+
+    }
+
+    100% {
+        fill: #420fcfc9;
+    }
+}
+
+@keyframes highlightOutTulcan {
+    0% {
+        fill: #420fcfc9;
+    }
+
+    100% {
+
+        fill: #85069eb7;
+    }
+}
+
+@keyframes highlightInSantodomingo {
+    0% {
+        fill: #dfd436c4;
+
+    }
+
+    100% {
+        fill: #420fcfc9;
+    }
+}
+
+@keyframes highlightOutSantodomingo {
+    0% {
+        fill: #420fcfc9;
+    }
+
+    100% {
+
+        fill: #dfd436c4;
+    }
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
