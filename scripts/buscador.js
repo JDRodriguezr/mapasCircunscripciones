@@ -8727,7 +8727,7 @@ function apagarHighlight(nombreRegion) {
     case 'esmeraldas': {
       console.log('esto deberia ser la funcionalidad de apagar esmeraldas');
       for (path of pathsEsmeraldas) {
-        path.style.fill = '33cbd3be';
+        path.style.fill = '#33cbd3be';
       }
       return;
     }
