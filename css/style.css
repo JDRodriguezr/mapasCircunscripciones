@@ -341,29 +341,7 @@ th {
 
 }
 
-.clase-tulcan {
-    cursor: pointer;
-    color: rgb(175, 96, 206);
-    font-weight: bold;
-}
 
-.clase-guayaquil {
-    font-weight: bold;
-    cursor: pointer;
-    color: rgb(94, 156, 70)
-}
-
-.clase-quito {
-    font-weight: bold;
-    cursor: pointer;
-    color: rgb(201, 85, 76)
-}
-
-.clase-nuevaloja {
-    font-weight: bold;
-    cursor: pointer;
-    color: rgb(243, 143, 61)
-}
 
 span.link {
     cursor: pointer;
@@ -523,4 +501,40 @@ svg {
     fill: #420fcfc9;
     transition: 0.6s;
     cursor: pointer;
+}
+
+.clase-tulcan {
+    cursor: pointer;
+    color: rgb(175, 96, 206);
+    font-weight: bold;
+}
+
+.clase-guayaquil {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(94, 156, 70)
+}
+
+.clase-quito {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(201, 85, 76)
+}
+
+.clase-nuevaloja {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(243, 143, 61)
+}
+
+.clase-santodomingo {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgba(252, 224, 67, 0.884)
+}
+
+.clase-esmeraldas {
+    font-weight: bold;
+    cursor: pointer;
+    color: rgba(10, 123, 175, 0.945)
 }

@@ -8706,42 +8706,42 @@ function apagarHighlight(nombreRegion) {
     case 'guayaquil': {
       console.log('esto deberia ser la funcionalidad de apagar guayaquil');
       for (path of pathsGuayaquil) {
-        path.style.fill = '#91bd5f';
+        path.style.removeProperty('fill');
       }
       return;
     }
     case 'tulcan': {
       console.log('esto deberia ser la funcionalidad de apagar tulcan');
       for (path of pathsTulcan) {
-        path.style.fill = '#85069eb7';
+        path.style.removeProperty('fill');
       }
       return;
     }
     case 'santodomingo': {
       console.log('esto deberia ser la funcionalidad de apagar santodomingo');
       for (path of pathsSantodomingo) {
-        path.style.fill = '#dfd436c4';
+        path.style.removeProperty('fill');
       }
       return;
     }
     case 'esmeraldas': {
       console.log('esto deberia ser la funcionalidad de apagar esmeraldas');
       for (path of pathsEsmeraldas) {
-        path.style.fill = '#33cbd3be';
+        path.style.removeProperty('fill');
       }
       return;
     }
     case 'quito': {
       console.log('esto deberia ser la funcionalidad de apagar quito');
       for (path of pathsQuito) {
-        path.style.fill = '#e63d3dc4';
+        path.style.removeProperty('fill');
       }
       return;
     }
     case 'nuevaloja': {
       console.log('esto deberia ser la funcionalidad de apagar nuevaloja');
       for (path of pathsNuevaloja) {
-        path.style.fill = '#f59f26c4';
+        path.style.removeProperty('fill');
       }
       return;
     }
