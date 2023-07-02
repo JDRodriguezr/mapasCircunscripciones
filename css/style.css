@@ -342,23 +342,22 @@ th {
 }
 
 
-
 span.link {
     cursor: pointer;
-    text-decoration: underline;
+
     font-weight: bold;
 }
 
 .displayMe {
-    max-width: 900px;
-    max-height: 350px;
+
     position: absolute;
-    z-index: 100;
+    z-index: 0;
 }
 
 .displayMe img {
-    width: 100%;
     box-shadow: 2px 2px 5px;
+    max-width: 1000px;
+    max-height: 450px;
 }
 
 @keyframes highlightInNuevaloja {
@@ -513,26 +512,31 @@ span.link {
     }
 }
 
+@keyframes rotarRefreshimg {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
 #boton-basura {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
+    margin-top: 8px;
+    margin-left: 8px;
+    border-radius: 100%;
+    padding: 7px;
 }
 
-.contenedor-basura {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 1rem;
-    text-align: center;
-    border-radius: 15%;
-    float: inline-start;
-    background: #ff000013;
-}
-
-.contenedor-basura :hover {
+#boton-basura:hover {
+    animation: rotarRefreshimg 1.5s infinite linear;
     cursor: pointer;
-    border-radius: 15%;
-    background: #ff000060;
 }
+
+
 
 svg {
     height: 60%;
