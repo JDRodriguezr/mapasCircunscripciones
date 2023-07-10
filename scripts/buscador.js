@@ -8388,6 +8388,10 @@ const archivoJSON = [
     Parroquia: 'EL PIEDRERO',
   },
 ];
+const nuevoJSON = archivoJSON.map(objeto => {
+  const { Consuladuria, ...jsonsito } = objeto;
+  return jsonsito;
+});
 const cardOnHover = document.createElement('div');
 const botonBuscar = document.getElementById('btnBuscar');
 const body = document.querySelector('body');
@@ -8400,9 +8404,12 @@ const pathsNuevaloja = document.getElementsByClassName('paths-nuevaloja');
 const pathsQUITO = document.getElementsByClassName('paths-quito');
 const pathsSantodomingo = document.getElementsByClassName('paths-santodomingo');
 const pathsESMERALDAS = document.getElementsByClassName('paths-esmeraldas');
+const paginasDiv = document.getElementById('contenedor-paginas')
 const refreshImg = document.getElementById('boton-basura');
-// const regionQUITOSvg = document.getElementById('consulado_quito_svg');
+let eleccionBusqueda = document.querySelector('input[name="busqueda"]:checked').value;
+let respuestaJson2
 let datoBuscado = document.getElementById('inputBuscador').value;
+let paginaGlobal = 1;
 window.addEventListener('mousemove', (event) => {
   mousePos = { x: event.clientX, y: event.clientY };
 });
@@ -8416,6 +8423,10 @@ function limpiarResultados() {
   // Limpia la tabla
   while (tblBody.firstChild) {
     tblBody.removeChild(tblBody.firstChild);
+  }
+  //limpia las paginas
+  while (paginasDiv.firstChild) {
+    paginasDiv.removeChild(paginasDiv.firstChild);
   }
   // Limpia la barra de busqueda
   barraConsulta.value = '';
@@ -8436,38 +8447,146 @@ function mostrarResultados() {
   }
 
   let respuestaJson = buscarDatoEnJSON(datoBuscado);
+  respuestaJson2= respuestaJson;
   // Si no encuentra nada de info en la base de datos
   if (!respuestaJson) {
     mensajeDeError.innerText = `No se ha encontrado informacion que contenga: ${datoBuscado}`;
     return;
   }
+  // a;adir paginas
+  paginacion(respuestaJson.length)
   removeErrorMessageText();
-  generateTable(respuestaJson);
+  generateTable(respuestaJson, 1);
 }
-
+function paginacion(length){
+  while (paginasDiv.firstChild) {
+    paginasDiv.removeChild(paginasDiv.firstChild);
+  }
+  if(length % 20 == 0){
+    paginaGlobal = Math.floor(length/20)
+    return
+  }
+  cantidadPaginas = Math.floor(length/20);
+  if(cantidadPaginas<1){paginaGlobal = 1}
+  else{paginaGlobal = cantidadPaginas + 1;}
+  console.log("paginas: " + paginaGlobal)
+  console.log("resultados: "+ length)
+  if(paginaGlobal>36){paginaGlobal=36}
+  for(i=0;i<paginaGlobal;i++){
+    const numero = document.createElement('span');
+    numero.setAttribute(
+      'onclick',
+      'generateTable(respuestaJson2, this.innerHTML); cambiarEstiloSpan(this);'
+    );
+    numero.setAttribute(
+      'class',
+      'spanPaginas'
+    );
+    const numeroText = document.createTextNode(i+1)
+    numero.appendChild(numeroText)
+    paginasDiv.appendChild(numero)
+  }
+  
+}
+function cambiarEstiloSpan(elemento){
+console.log('cambiar color de la pagina actual')
+}
 function buscarDatoEnJSON(datoBuscado) {
-  var resultados = archivoJSON.filter((objeto) => {
-    var objetoJSON = JSON.stringify(objeto);
-    return objetoJSON.includes(datoBuscado.toUpperCase());
-  });
+  datoBuscado = datoBuscado.toUpperCase();
+  eleccionBusqueda = document.querySelector('input[name="busqueda"]:checked').value;
+  console.log(eleccionBusqueda)
 
-  return resultados.length > 0 ? resultados : null;
+  switch(eleccionBusqueda){
+    case 'provincia-parroquias':{
+      const matches = archivoJSON.filter(objeto => {
+        const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+        return (
+          Provincia.includes(datoBuscado)
+        );
+      });
+      return matches.length > 0 ? matches : null;
+    }
+    case 'canton-parroquias':{
+      const matches = archivoJSON.filter(objeto => {
+        const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+        return (
+          Cantón.includes(datoBuscado)
+        );
+      });
+      return matches.length > 0 ? matches : null;
+    }
+    case 'match-todo':{
+      const matches = archivoJSON.filter(objeto => {
+        const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+        return (
+          Provincia.includes(datoBuscado) ||
+          Cantón.includes(datoBuscado) ||
+          Parroquia.includes(datoBuscado)
+        );
+      });
+      console.log(matches)
+      return matches.length > 0 ? matches : null;
+    }
+    case 'provincia-cantones':{
+      const matches = archivoJSON.filter(objeto => {
+        const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+        return (
+          Provincia.includes(datoBuscado)
+        );
+      });
+      const cantones = [];
+      const matchesFiltrado = [];
+      matches.forEach(match => {
+        if (!cantones.includes(match.Cantón)) {
+          cantones.push(match.Cantón);
+        }
+      });
+      console.log('cantones encontrados diferentes: ' + cantones)
+      for(i=0;i<cantones.length;i++){
+        matchesFiltrado.push(matches.find(objeto => {
+          const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+          return (
+            Cantón.includes(cantones[i])
+          );
+        }));
+      }
+      console.log(matchesFiltrado)
+      return matchesFiltrado.length > 0 ? matchesFiltrado : null;
+    }
+    
+  }
+  
+    /*const matches = archivoJSON.filter(objeto => {
+      const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+      return (
+        Provincia.includes(datoBuscado) ||
+        Cantón.includes(datoBuscado) ||
+        Parroquia.includes(datoBuscado)
+      );
+    });*/
+
+  
+
+  
 }
-function generateTable(respuestaJson) {
-  // creates a <table> element and a <tbody> element
+function generateTable(respuestaJson, pagina) {
+
 
   while (tblBody.firstChild) {
     tblBody.removeChild(tblBody.firstChild);
   }
+  
   let iteraciones;
-  if (respuestaJson.length > 20) {
-    iteraciones = 20;
-  } else {
+  if (pagina*20 > respuestaJson.length) {
     iteraciones = respuestaJson.length;
+  } else {
+    iteraciones = pagina*20;
   }
+  console.log('la pagina que esta utilizando es:' + pagina)
 
   // creating all cells
-  for (let i = 0; i < iteraciones /*respuestaJson.length*/; i++) {
+  for (let i = (pagina-1)*20; i < iteraciones /*respuestaJson.length*/; i++) {
+    
     // creates a table row
     const row = document.createElement('tr');
 
@@ -8764,3 +8883,5 @@ barraConsulta.addEventListener('keypress', function (event) {
     botonBuscar.click();
   }
 });
+
+

@@ -4,7 +4,7 @@ body {
 
 #mapContainer {
     display: grid;
-    grid-template-columns: 2% 45% 3% 50%;
+    grid-template-columns: 1% 47% 1% 50%;
     width: auto;
 }
 
@@ -17,7 +17,7 @@ body {
 .panelDerecho {
     grid-column-start: 4;
     display: grid;
-    grid-template-rows: 60px 60px 22px 600px;
+    grid-template-rows: 60px 90px 22px 100%;
     overflow: hidden;
     max-height: 100%;
 }
@@ -208,15 +208,29 @@ td {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     font-size: small;
+    max-height: fit-content;
 }
 
 table {
     border: 3px solid;
     border-color: #255FA2;
     border-collapse: collapse;
+    width: -moz-available;
     height: max-content;
 }
-
+#contenedor-paginas{
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+#contenedor-paginas span{
+    padding-right: 4px;
+}
+.spanPaginas{
+    color: rgb(30, 76, 130);
+    cursor: pointer;
+    
+}
 th {
     color: rgb(30, 76, 130);
     border: 2px solid;
@@ -356,6 +370,10 @@ th {
     }
 
 
+}
+
+#busqueda-avanzada{
+    padding-top: 1rem;
 }
 
 
@@ -557,6 +575,7 @@ span.link {
 
 svg {
     height: 60%;
+    max-height: 60%;
 }
 
 .cls-1,
@@ -690,4 +709,7 @@ svg {
     font-weight: bold;
     cursor: pointer;
     color: rgba(10, 123, 175, 0.945)
+}
+.contenedor-tabla{
+    width: inherit;
 }
