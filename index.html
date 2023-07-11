@@ -410,7 +410,7 @@
               transform="translate(245 327.5) rotate(-.11) scale(.06)" id="map-consulado-santodomingo"
               xlink:href="#image" />
             <use onmouseout="removeCard();"
-              onmouseenter='displayCard("images/consulados/consulado-papatimy.png", this);'
+              onmouseenter='displayCard("images/consulados/consulado-tulcan-foto.png", this);'
               transform="translate(424 204.46) scale(.06)" id="map-consulado-tulcan" xlink:href="#image" />
             <use onmouseout="removeCard();"
               onmouseenter='displayCard("images/consulados/consulado-papatimy.png", this);'
@@ -419,7 +419,7 @@
               onmouseenter='displayCard("images/consulados/consulado-papatimy.png", this);'
               transform="translate(335 320.46) scale(.06)" id="map-embajada-colombia" xlink:href="#image" />
             <use onmouseout="removeCard();"
-              onmouseenter='displayCard("images/consulados/consulado-papatimy.png", this);'
+              onmouseenter='displayCard("images/consulados/consulado-guayaquil-foto.png", this);'
               transform="translate(169 570.46) scale(.06)" id="map-consulado-guayaquil" xlink:href="#image" />
             <use onmouseout="removeCard();"
               onmouseenter='displayCard("images/consulados/consulado-papatimy.png", this);'
@@ -444,35 +444,37 @@
             <img src="./images/consulta/refresh-icono.png" alt="refresh" id="boton-basura">
           </div>
           <div id="busqueda-avanzada">
-            <input type="radio" id="match-loquesea" name="busqueda" value="match-todo"> Lo que sea
-            <input type="radio" id="provincia-cantones" name="busqueda" value="provincia-cantones"> Cantones de X Provincia
-            <input type="radio" id="provincia-parroquias" name="busqueda" value="provincia-parroquias"> Parroquias de X Provincia
+            <input type="radio" id="match-loquesea" name="busqueda" value="match-todo" checked="checked"> Parroquias
+            <input type="radio" id="provincia-cantones" name="busqueda" value="provincia-cantones"> Cantones de X
+            Provincia
+            <input type="radio" id="provincia-parroquias" name="busqueda" value="provincia-parroquias"> Parroquias de X
+            Provincia
             <input type="radio" id="canton-parroquias" name="busqueda" value="canton-parroquias"> Parroquias de X Canton
           </div>
-          
+
         </div>
         <p class="error-message" id="mensajesDeError"></p>
         <div class="contenedor-tabla" id="tabla-resultados-paginas">
-        <table id="respuesta">
-          <tr>
-            <th>Circunscripción consular</th>
-            <th>Provincia</th>
-            <th>Canton</th>
-            <th>Parroquia</th>
-          </tr>
-          <tbody id="tbody-respuesta">
+          <table id="respuesta">
             <tr>
-              <td>---</td>
-              <td>---</td>
-              <td>---</td>
-              <td>---</td>
+              <th>Circunscripción consular</th>
+              <th>Provincia</th>
+              <th>Canton</th>
+              <th>Parroquia</th>
             </tr>
-          </tbody>
-        </table>
-        <div id="contenedor-paginas">
+            <tbody id="tbody-respuesta">
+              <tr>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+                <td>---</td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="contenedor-paginas">
 
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </div>

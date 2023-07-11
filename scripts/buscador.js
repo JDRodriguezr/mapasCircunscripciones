@@ -8388,7 +8388,7 @@ const archivoJSON = [
     Parroquia: 'EL PIEDRERO',
   },
 ];
-const nuevoJSON = archivoJSON.map(objeto => {
+const nuevoJSON = archivoJSON.map((objeto) => {
   const { Consuladuria, ...jsonsito } = objeto;
   return jsonsito;
 });
@@ -8404,10 +8404,12 @@ const pathsNuevaloja = document.getElementsByClassName('paths-nuevaloja');
 const pathsQUITO = document.getElementsByClassName('paths-quito');
 const pathsSantodomingo = document.getElementsByClassName('paths-santodomingo');
 const pathsESMERALDAS = document.getElementsByClassName('paths-esmeraldas');
-const paginasDiv = document.getElementById('contenedor-paginas')
+const paginasDiv = document.getElementById('contenedor-paginas');
 const refreshImg = document.getElementById('boton-basura');
-let eleccionBusqueda = document.querySelector('input[name="busqueda"]:checked').value;
-let respuestaJson2
+let eleccionBusqueda = document.querySelector(
+  'input[name="busqueda"]:checked'
+).value;
+let respuestaJson2;
 let datoBuscado = document.getElementById('inputBuscador').value;
 let paginaGlobal = 1;
 window.addEventListener('mousemove', (event) => {
@@ -8447,76 +8449,75 @@ function mostrarResultados() {
   }
 
   let respuestaJson = buscarDatoEnJSON(datoBuscado);
-  respuestaJson2= respuestaJson;
+  respuestaJson2 = respuestaJson;
   // Si no encuentra nada de info en la base de datos
   if (!respuestaJson) {
     mensajeDeError.innerText = `No se ha encontrado informacion que contenga: ${datoBuscado}`;
     return;
   }
   // a;adir paginas
-  paginacion(respuestaJson.length)
+  paginacion(respuestaJson.length);
   removeErrorMessageText();
   generateTable(respuestaJson, 1);
 }
-function paginacion(length){
+function paginacion(length) {
   while (paginasDiv.firstChild) {
     paginasDiv.removeChild(paginasDiv.firstChild);
   }
-  if(length % 20 == 0){
-    paginaGlobal = Math.floor(length/20)
-    return
+  if (length % 20 == 0) {
+    paginaGlobal = Math.floor(length / 20);
+    return;
   }
-  cantidadPaginas = Math.floor(length/20);
-  if(cantidadPaginas<1){paginaGlobal = 1}
-  else{paginaGlobal = cantidadPaginas + 1;}
-  console.log("paginas: " + paginaGlobal)
-  console.log("resultados: "+ length)
-  if(paginaGlobal>36){paginaGlobal=36}
-  for(i=0;i<paginaGlobal;i++){
+  cantidadPaginas = Math.floor(length / 20);
+  if (cantidadPaginas < 1) {
+    paginaGlobal = 1;
+  } else {
+    paginaGlobal = cantidadPaginas + 1;
+  }
+  console.log('paginas: ' + paginaGlobal);
+  console.log('resultados: ' + length);
+  if (paginaGlobal > 36) {
+    paginaGlobal = 36;
+  }
+  for (i = 0; i < paginaGlobal; i++) {
     const numero = document.createElement('span');
     numero.setAttribute(
       'onclick',
       'generateTable(respuestaJson2, this.innerHTML); cambiarEstiloSpan(this);'
     );
-    numero.setAttribute(
-      'class',
-      'spanPaginas'
-    );
-    const numeroText = document.createTextNode(i+1)
-    numero.appendChild(numeroText)
-    paginasDiv.appendChild(numero)
+    numero.setAttribute('class', 'spanPaginas');
+    const numeroText = document.createTextNode(i + 1);
+    numero.appendChild(numeroText);
+    paginasDiv.appendChild(numero);
   }
-  
 }
-function cambiarEstiloSpan(elemento){
-console.log('cambiar color de la pagina actual')
+function cambiarEstiloSpan(elemento) {
+  console.log('cambiar color de la pagina actual');
 }
 function buscarDatoEnJSON(datoBuscado) {
   datoBuscado = datoBuscado.toUpperCase();
-  eleccionBusqueda = document.querySelector('input[name="busqueda"]:checked').value;
-  console.log(eleccionBusqueda)
+  eleccionBusqueda = document.querySelector(
+    'input[name="busqueda"]:checked'
+  ).value;
+  console.log(eleccionBusqueda);
 
-  switch(eleccionBusqueda){
-    case 'provincia-parroquias':{
-      const matches = archivoJSON.filter(objeto => {
+  switch (eleccionBusqueda) {
+    case 'provincia-parroquias': {
+      const matches = archivoJSON.filter((objeto) => {
         const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
-        return (
-          Provincia.includes(datoBuscado)
-        );
+        return Provincia.includes(datoBuscado);
       });
       return matches.length > 0 ? matches : null;
     }
-    case 'canton-parroquias':{
-      const matches = archivoJSON.filter(objeto => {
+    case 'canton-parroquias': {
+      const matches = archivoJSON.filter((objeto) => {
         const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
-        return (
-          Cantón.includes(datoBuscado)
-        );
+        return Cantón.includes(datoBuscado);
       });
       return matches.length > 0 ? matches : null;
     }
-    case 'match-todo':{
-      const matches = archivoJSON.filter(objeto => {
+    case 'match-todo': {
+      const matches = archivoJSON.filter((objeto) => {
         const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
         return (
           Provincia.includes(datoBuscado) ||
@@ -8524,39 +8525,48 @@ function buscarDatoEnJSON(datoBuscado) {
           Parroquia.includes(datoBuscado)
         );
       });
-      console.log(matches)
+      console.log(matches);
       return matches.length > 0 ? matches : null;
     }
-    case 'provincia-cantones':{
-      const matches = archivoJSON.filter(objeto => {
+    case 'provincia-cantones': {
+      const matches = archivoJSON.filter((objeto) => {
         const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
-        return (
-          Provincia.includes(datoBuscado)
-        );
+        return Provincia.includes(datoBuscado);
       });
       const cantones = [];
       const matchesFiltrado = [];
-      matches.forEach(match => {
+      matches.forEach((match) => {
         if (!cantones.includes(match.Cantón)) {
           cantones.push(match.Cantón);
         }
       });
-      console.log('cantones encontrados diferentes: ' + cantones)
-      for(i=0;i<cantones.length;i++){
-        matchesFiltrado.push(matches.find(objeto => {
-          const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
-          return (
-            Cantón.includes(cantones[i])
-          );
-        }));
+      console.log('cantones encontrados diferentes: ' + cantones);
+      for (i = 0; i < cantones.length; i++) {
+        matchesFiltrado.push(
+          matches.find((objeto) => {
+            const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+            return Cantón.includes(cantones[i]);
+          })
+        );
       }
-      console.log(matchesFiltrado)
+      console.log(matchesFiltrado);
       return matchesFiltrado.length > 0 ? matchesFiltrado : null;
     }
-    
+
+    default: {
+      const matches = archivoJSON.filter((objeto) => {
+        const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
+        return (
+          Provincia.includes(datoBuscado) ||
+          Cantón.includes(datoBuscado) ||
+          Parroquia.includes(datoBuscado)
+        );
+      });
+      return matches.length > 0 ? matches : null;
+    }
   }
-  
-    /*const matches = archivoJSON.filter(objeto => {
+
+  /*const matches = archivoJSON.filter(objeto => {
       const { Consuladuria, Provincia, Cantón, Parroquia } = objeto;
       return (
         Provincia.includes(datoBuscado) ||
@@ -8564,29 +8574,26 @@ function buscarDatoEnJSON(datoBuscado) {
         Parroquia.includes(datoBuscado)
       );
     });*/
-
-  
-
-  
 }
 function generateTable(respuestaJson, pagina) {
-
-
   while (tblBody.firstChild) {
     tblBody.removeChild(tblBody.firstChild);
   }
-  
+
   let iteraciones;
-  if (pagina*20 > respuestaJson.length) {
+  if (pagina * 20 > respuestaJson.length) {
     iteraciones = respuestaJson.length;
   } else {
-    iteraciones = pagina*20;
+    iteraciones = pagina * 20;
   }
-  console.log('la pagina que esta utilizando es:' + pagina)
+  console.log('la pagina que esta utilizando es:' + pagina);
 
   // creating all cells
-  for (let i = (pagina-1)*20; i < iteraciones /*respuestaJson.length*/; i++) {
-    
+  for (
+    let i = (pagina - 1) * 20;
+    i < iteraciones /*respuestaJson.length*/;
+    i++
+  ) {
     // creates a table row
     const row = document.createElement('tr');
 
@@ -8883,5 +8890,3 @@ barraConsulta.addEventListener('keypress', function (event) {
     botonBuscar.click();
   }
 });
-
-
